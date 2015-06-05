@@ -1,0 +1,10 @@
+{
+  "appId": "scotch",
+  "apiKey": "8fd41c2452e5d0b4879af80c065870ac2211fd69870e53a7e2419c977d39c954",
+  "public": "./",
+  "ignore": [
+    "stamplay.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "angular-stamplay",
+  "version": "0.0.0",
+  "homepage": "https://github.com/scotch-io/angular-stamplay",
+  "authors": [
+    "Chris Sevilleja <chris@scotch.io>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "stamplay-sdk": "~1.0.0",
+    "angular-stamplay": "*"
+  }
+}

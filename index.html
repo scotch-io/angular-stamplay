@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <!-- CSS -->
+  <!-- load bootstrap and custom css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/spacelab/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- JS -->
+  <!-- load stamplay sdk, angular, angular-stamplay service -->
+  <script src="bower_components/stamplay-sdk/dist/stamplay.min.js"></script>
+  <script>
+    // initiate stamplay app with api key
+    Stamplay.init('scotch');
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+  <script src="bower_components/angular-stamplay/angular-stamplay.js"></script>
+  <script src="app.js"></script>
+  
+</head>
+<body ng-app="stamplayApp" ng-controller="MainController as main">
+<div class="container">  
+  
+  <h1>Hello asdfasdf!</h1>
+
+</div> 
+</body>
+</html>
