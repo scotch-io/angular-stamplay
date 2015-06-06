@@ -18,6 +18,13 @@
   ],
   "dependencies": {
     "stamplay-sdk": "~1.0.0",
-    "angular-stamplay": "*"
+    "angular-stamplay": "*",
+    "angular": "~1.4.0"
+  },
+  "install": {
+    "path": "libs",
+    "sources" : {
+      "angular-stamplay" : "bower_components/angular-stamplay/angular-stamplay.js"
+    }
   }
 }
