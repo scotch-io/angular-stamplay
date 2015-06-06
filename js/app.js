@@ -15,6 +15,7 @@ function MainController($stamplay, $http) {
   user.currentUser()
     .then(function() {
       main.userId = user.get('_id');
+      console.log(user.get('_id'));
     });
 
   // submit a suggestion
