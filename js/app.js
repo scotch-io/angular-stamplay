@@ -6,6 +6,9 @@ angular
 function MainController($stamplay, $http) {
   
   var main = this;
+  main.suggestionData = {};   // blank object to hold data from suggestion form
+
+  // get the stamplay user instance
   var user = $stamplay.User().Model;
 
   // get current user
@@ -14,9 +17,7 @@ function MainController($stamplay, $http) {
       main.userId = user.get('_id');
     });
 
-  // blank object to hold data from suggestion form
-  main.suggestionData = {};
-
+  // submit a suggestion
   main.submitSuggestion = function(formData) {
     console.log('submitting');
 
@@ -30,9 +31,5 @@ function MainController($stamplay, $http) {
         });
     }
   };
-
-  function getCurrentUserId() {
-    
-  }
   
 }
