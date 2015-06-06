@@ -7,26 +7,42 @@ h1, h2, h3, h4, h5, h6 	{
 	padding:50px;
 }
 
+.login-message i 			{
+	font-size:40px;
+	display:block;
+	padding-left:50px;
+	padding-right:50px;
+	margin-bottom:10px;
+}
+
 .suggestion-container {
-	width:500px;
+	width:550px;
+	padding:0;
 	margin:0 auto;
 }
 .suggestion-page 			{
 	background:#FFF;
 	padding:50px;
-	margin:0 30px;
+	margin:0 50px;
+	min-height:200px;
 	transform:translateY(50px);
+	position:relative;
 }
 .suggestion-page::after 	{
 	content:'';
-	
+	position:absolute;
+	bottom:0;
+	left:-4%;
+	width:108%;
+	height:1px;
+	background:#0D96BD;	
 }
 .suggestion-box 			{
 	background:#00B8EC;
 	padding:70px 0 30px;
 	color:#FFF;
 	text-align:center;
-	font-size:50px;
+	font-size:40px;
 	text-transform:uppercase;
-	letter-spacing:-1px;
+	letter-spacing:-3px;
 }
