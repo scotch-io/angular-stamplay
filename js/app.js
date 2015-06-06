@@ -3,28 +3,36 @@ angular
   .controller('MainController', MainController);
   
   
-function MainController($stamplay) {
+function MainController($stamplay, $http) {
   
   var main = this;
-    
-  var registrationData = {
-    email : 'user@provider.com',
-    password: 'mySecret'
+  var user = $stamplay.User().Model;
+
+  // get current user
+  user.currentUser()
+    .then(function() {
+      main.userId = user.get('_id');
+    });
+
+  // blank object to hold data from suggestion form
+  main.suggestionData = {};
+
+  main.submitSuggestion = function(formData) {
+    console.log('submitting');
+
+    // check if the user is logged in
+    if (main.userId) {
+      formData.userId = main.userId;
+
+      $http.post('/api/form/v0/forms/suggestions/entries', formData)
+        .then(function(data) {
+          console.log(data);
+        });
+    }
   };
 
-  var newUser = $stamplay.User().Model;
-  
-  console.log(newUser); 
-  
-  newUser.signup(registrationData).then(function() {
-    // User is now registered
-    newUser.set('phoneNumber', '020 123 4567' );
-    return newUser.save();
-  }).then(function(){
-    // User is saved successfully side
-    var number = newUser.get('phoneNumber');
-    console.log(number); // number value is 020 123 4567
-  });
-
+  function getCurrentUserId() {
+    
+  }
   
 }

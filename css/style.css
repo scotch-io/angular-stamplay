@@ -1,0 +1,32 @@
+h1, h2, h3, h4, h5, h6 	{
+	color:#F26C4F;
+}
+
+.site-topper 		{
+	background:#E9F0F4;
+	padding:50px;
+}
+
+.suggestion-container {
+	width:500px;
+	margin:0 auto;
+}
+.suggestion-page 			{
+	background:#FFF;
+	padding:50px;
+	margin:0 30px;
+	transform:translateY(50px);
+}
+.suggestion-page::after 	{
+	content:'';
+	
+}
+.suggestion-box 			{
+	background:#00B8EC;
+	padding:70px 0 30px;
+	color:#FFF;
+	text-align:center;
+	font-size:50px;
+	text-transform:uppercase;
+	letter-spacing:-1px;
+}
