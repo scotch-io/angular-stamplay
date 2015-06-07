@@ -4,58 +4,10 @@
 
 	<!-- CSS -->
 	<!-- load bootstrap and custom css -->
-	<link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./bower_components/ionicons/css/ionicons.min.css">
-  <style>
-    h1, h2, h3, h4, h5, h6  {
-      color:#F26C4F;
-    }
+	<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./bower_components/ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="./css/style.css">
 
-    .site-topper    {
-      background:#E9F0F4;
-      padding:50px;
-    }
-
-    .login-message i      {
-      font-size:40px;
-      display:block;
-      padding-left:50px;
-      padding-right:50px;
-      margin-bottom:10px;
-    }
-
-    .suggestion-container {
-      width:500px;
-      padding:0;
-      margin:0 auto;
-    }
-    .suggestion-page      {
-      background:#FFF;
-      padding:50px;
-      margin:0 70px;
-      min-height:250px;
-      transform:translateY(50px);
-      position:relative;
-    }
-    .suggestion-page::after   {
-      content:'';
-      position:absolute;
-      bottom:0;
-      left:-4%;
-      width:108%;
-      height:1px;
-      background:#0D96BD; 
-    }
-    .suggestion-box       {
-      background:#00B8EC;
-      padding:70px 0 30px;
-      color:#FFF;
-      text-align:center;
-      font-size:40px;
-      text-transform:uppercase;
-      letter-spacing:-3px;
-    }
-  </style>
 	<!-- JS -->
 	<!-- load stamplay sdk, angular, angular-stamplay service -->
 	<script src="./bower_components/stamplay-sdk/dist/stamplay.min.js"></script>
@@ -65,7 +17,9 @@
 	</script>
 	<script src="./bower_components/angular/angular.min.js"></script>
 	<script src="./bower_components/angular-stamplay/angular-stamplay.js"></script>
-	<script src="./js/app.js"></script>
+	<script src="./app/services/suggestion.js"></script>
+	<script src="./app/services/user.js"></script>
+	<script src="./app/app.js"></script>
 
 </head>
 <body ng-app="stamplayApp" ng-controller="MainController as main">
@@ -75,27 +29,37 @@
 		<div class="page-header text-center">
 			<h1>Scotch Suggestions with Stamplay and Angular</h1>
 			<p><a href="#">A Tutorial by Scotch.io</a></p>
-      stuff: {{ main.userId }}
 		</div>
 
 		<div class="suggestion-container">
 			<div class="suggestion-page">
 
 				<!-- LOGIN MESSAGE IF USER NOT LOGGED IN -->
-				<div class="login-message text-center" ng-hide="main.userId">
+				<div class="login-message text-center" ng-show="!main.loggedUser">
 					<a href="/auth/v0/twitter/connect" class="btn btn-info btn-lg">
-            <i class="icon ion-social-twitter"></i>
+						<i class="icon ion-social-twitter"></i>
 						Login
 					</a>
 				</div>
 
 				<!-- FORM GOES HERE -->
-				<form ng-submit="main.submitSuggestion(main.suggestionData)" ng-show="main.userId">
+				<form 
+					class="text-center" 
+					name="suggestionForm" 
+					ng-submit="main.submitSuggestion(main.loggedUser.userId, main.suggestionData)" 
+					ng-show="main.loggedUser" 
+					novalidate>
+						
 					<div class="form-group">
-						<label>What's your suggestion?</label>
-						<textarea class="form-control" rows="10" ng-model="main.suggestionData.text"></textarea>
+						<img ng-src="{{ main.loggedUser.profileImg }}" class="img-circle img-responsive">
+						<h3>{{ main.loggedUser.displayName }}</h3>
 					</div>
-					<button class="btn btn-danger btn-lg btn-block">Submit Suggestion</button>
+
+					<div class="form-group">
+						<label>What can we improve at Scotch.io?</label>
+						<textarea class="form-control" rows="5" name="text" ng-model="main.suggestionData.text" required></textarea>
+					</div>
+					<button class="btn btn-danger btn-lg btn-block" ng-disabled="suggestionForm.$invalid">Submit Suggestion</button>
 				</form>
 		
 			</div>
@@ -106,10 +70,35 @@
 	</div>
 	</section>
 
-	<section class="leaderboard">
+	<section class="suggestions-section">
 	<div class="container">
 		<div class="page-header">
-			<h2>Best Users</h2>
+			<h2>Suggestions</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4 col-lg-3 text-center" ng-repeat="suggestion in main.suggestionList">
+				<div class="suggestion">
+					<p>{{ suggestion.instance.text }}</p>
+
+					<div class="vote-buttons btn-group-vertical">
+						{{ suggestion.instance.actions.votes.total }}
+						<a class="btn btn-success" 
+							ng-click="main.vote(suggestion, 'upvote')"
+							ng-disabled="suggestion.instance.actions.votes.upvoted">
+							<i class="icon ion-thumbsup"></i>
+						</a>
+						<a class="btn btn-danger" 
+							ng-click="main.vote(suggestion, 'downvote')"
+							ng-disabled="suggestion.instance.actions.votes.downvoted">
+							<i class="icon ion-thumbsdown"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+
+<pre>{{ main.suggestionList | json }}</pre>
 		</div>
 	</div>
 	</section>

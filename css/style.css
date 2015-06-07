@@ -1,48 +1,66 @@
-h1, h2, h3, h4, h5, h6 	{
-	color:#F26C4F;
-}
+@charset "UTF-8";
 
-.site-topper 		{
-	background:#E9F0F4;
-	padding:50px;
-}
-
-.login-message i 			{
+h1, h2, h3, h4, h5, h6  { color:#F26C4F; }
+.site-topper   					{ background:#E9F0F4; padding:50px; }
+.login-message i      	{
 	font-size:40px;
 	display:block;
 	padding-left:50px;
 	padding-right:50px;
 	margin-bottom:10px;
 }
-
 .suggestion-container {
-	width:500px;
+	width:600px;
 	padding:0;
 	margin:0 auto;
 }
-.suggestion-page 			{
+.suggestion-page      {
 	background:#FFF;
 	padding:50px;
-	margin:0 70px;
+	margin:0 80px;
 	min-height:250px;
 	transform:translateY(50px);
 	position:relative;
 }
-.suggestion-page::after 	{
+.suggestion-page::after   {
 	content:'';
 	position:absolute;
 	bottom:0;
 	left:-4%;
 	width:108%;
-	height:1px;
-	background:#0D96BD;	
+	height:5px;
+	background:#0D96BD; 
 }
-.suggestion-box 			{
+.suggestion-box       {
 	background:#00B8EC;
 	padding:70px 0 30px;
 	color:#FFF;
 	text-align:center;
 	font-size:40px;
 	text-transform:uppercase;
+	border-top-left-radius:8px; border-top-right-radius:8px;
 	letter-spacing:-3px;
+}
+form img 				{ margin:0 auto; }
+.suggestions-section .container 	{ width:95%; }
+.suggestion 		{
+	color:#333;
+	font-size:18px;
+	padding:15px 10px 15px 50px;
+	border-radius:5px;
+	box-shadow:3px 3px #EBEBEB;
+	border:1px solid #DDD;
+	margin-bottom:30px; 
+	min-height:130px; 
+}
+.suggestion .vote-buttons 	{
+	position:absolute;
+	left:30px;
+	top:20px;
+	margin-right:20px;
+}
+
+@media screen and (max-width:768px) {
+	.suggestion-container { width:auto; }
+	.suggestion-page 			{ margin-left:0; margin-right:0; }
 }
