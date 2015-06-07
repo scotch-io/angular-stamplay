@@ -37,7 +37,7 @@
 			<div class="suggestion-page">
 
 				<!-- LOGIN MESSAGE IF USER NOT LOGGED IN -->
-				<div class="login-message text-center" ng-show="!main.loggedUser">
+				<div class="login-message text-center" ng-show="!main.loggedIn">
 					<a href="/auth/v0/github/connect" class="btn btn-default btn-lg">
 						<i class="icon ion-social-github"></i>
 						Login
@@ -49,7 +49,7 @@
 					class="text-center" 
 					name="suggestionForm" 
 					ng-submit="main.submitSuggestion(main.loggedUser.userId, main.suggestionData)" 
-					ng-show="main.loggedUser" 
+					ng-show="main.loggedIn" 
 					novalidate>
 						
 					<div class="form-group">
