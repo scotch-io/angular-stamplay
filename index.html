@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<title>Scotch Suggestions</title>
 
 	<!-- CSS -->
 	<!-- load bootstrap and custom css -->
@@ -36,8 +38,8 @@
 
 				<!-- LOGIN MESSAGE IF USER NOT LOGGED IN -->
 				<div class="login-message text-center" ng-show="!main.loggedUser">
-					<a href="/auth/v0/twitter/connect" class="btn btn-info btn-lg">
-						<i class="icon ion-social-twitter"></i>
+					<a href="/auth/v0/github/connect" class="btn btn-default btn-lg">
+						<i class="icon ion-social-github"></i>
 						Login
 					</a>
 				</div>
@@ -98,7 +100,6 @@
 				</div>
 			</div>
 
-<pre>{{ main.suggestionList | json }}</pre>
 		</div>
 	</div>
 	</section>
