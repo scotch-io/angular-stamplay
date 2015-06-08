@@ -7,13 +7,8 @@ function UserService($q, $stamplay) {
   var userModel = $stamplay.User().Model;
 
   return {
-    isLogged: isLogged,
     getCurrent: getCurrent
   };
-
-  function isLogged() {
-    return userModel.isLogged;
-  }
 
   function getCurrent() {
     var deferred = $q.defer();
@@ -21,10 +16,12 @@ function UserService($q, $stamplay) {
     userModel.currentUser()
       .then(function() {
         deferred.resolve(userModel);
+      })
+      .catch(function(err) {
+        deferred.reject(err);
       });
 
     return deferred.promise;
-
   }
 
 }

@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6  { color:#F26C4F; }
 	border-top-left-radius:8px; border-top-right-radius:8px;
 	letter-spacing:-3px;
 }
-form img 				{ margin:0 auto; }
+form img 				{ margin:0 auto; width:200px; }
 .suggestions-section .container 	{ width:95%; }
 .suggestion 		{
 	color:#333;

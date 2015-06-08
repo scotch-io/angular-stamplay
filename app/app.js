@@ -14,13 +14,15 @@ function MainController(Suggestion, User) {
   // ========================================
   User.getCurrent()
     .then(function(data) {
-      main.loggedIn = true;
-      main.loggedUser.userId = data.get('_id');
-      main.loggedUser.displayName = data.get('displayName');
-      main.loggedUser.profileImg = data.get('profileImg');     
-    })
-    .catch(function(data) {
-      main.loggedIn = false;
+      if (data.get('_id')) {
+        main.loggedIn = true;
+        main.loggedUser.userId = data.get('_id');
+        main.loggedUser.displayName = data.get('displayName');
+        main.loggedUser.profileImg = data.get('profileImg');   
+      } else {
+        main.loggedIn = false;
+      }
+        
     });
 
   // ========================================
