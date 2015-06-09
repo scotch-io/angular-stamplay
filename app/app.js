@@ -46,14 +46,12 @@ function MainController(Suggestion, User) {
   main.submitSuggestion = function(id, formData) {
     Suggestion.create(id, formData)
       .then(function(data) {
+
         // clear the form
         main.suggestionData = {};
 
-        // update the suggestions
-        Suggestion.getAll()
-          .then(function(data) {
-            main.suggestionList = data.instance;
-          });
+        // add the new suggestion to the list
+        main.suggestionList.push(data);
       });    
   };
 
