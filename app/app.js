@@ -10,6 +10,13 @@ function MainController(Suggestion, User) {
   main.loggedUser = {};       // blank object to hold logged in user data
 
   // ========================================
+  // function to logout a user
+  // ========================================
+  main.logout = function() {
+    User.logout();
+  };
+
+  // ========================================
   // get current user =======================
   // ========================================
   User.getCurrent()

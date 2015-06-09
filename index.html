@@ -55,7 +55,7 @@
 					<div class="form-group">
 						<img ng-src="{{ main.loggedUser.profileImg }}" class="img-circle img-responsive">
 						<h3>{{ main.loggedUser.displayName }}</h3>
-						<a href="/auth/v0/logout" class="btn btn-default">Logout</a>
+						<a ng-click="main.logout()" class="btn btn-default">Logout</a>
 					</div>
 
 					<div class="form-group">

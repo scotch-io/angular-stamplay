@@ -7,7 +7,8 @@ function UserService($q, $stamplay) {
   var userModel = $stamplay.User().Model;
 
   return {
-    getCurrent: getCurrent
+    getCurrent: getCurrent,
+    logout: logout
   };
 
   function getCurrent() {
@@ -22,6 +23,11 @@ function UserService($q, $stamplay) {
       });
 
     return deferred.promise;
+  }
+
+  // logout function to clear the token from 
+  function logout() {
+    userModel.logout();
   }
 
 }
