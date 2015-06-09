@@ -47,21 +47,22 @@ function SuggestionService($q, $stamplay) {
     var deferred = $q.defer();
 
     // find the specific suggestion you want to vote on
-    suggestionModel.fetch(id);
-    console.log(suggestionModel);
-
-    // handle the upvote and the downvote
-    if (type == 'upvote') {
-      suggestionModel.upVote()
-        .then(function() {
-          deferred.resolve(suggestionModel);
-        });
-    } else if (type == 'downvote') {
-      suggestionModel.downVote()
-        .then(function() {
-          deferred.resolve(suggestionModel);
-        });
-    }
+    suggestionModel.fetch(id).then(function() {
+      
+      // handle the upvote and the downvote
+      if (type == 'upvote') {
+        suggestionModel.upVote()
+          .then(function() {
+            deferred.resolve(suggestionModel);
+          });
+      } else if (type == 'downvote') {
+        suggestionModel.downVote()
+          .then(function() {
+            deferred.resolve(suggestionModel);
+          });
+      }
+      
+    });
 
     return deferred.promise;
   }
