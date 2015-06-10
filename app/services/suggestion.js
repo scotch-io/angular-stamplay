@@ -58,11 +58,17 @@ function SuggestionService($q, $stamplay) {
         suggestionModel.upVote()
           .then(function() {
             deferred.resolve(suggestionModel);
+          })
+          .fail(function(err) {
+            alert('You already voted for this suggestion.');
           });
       } else if (type == 'downvote') {
         suggestionModel.downVote()
           .then(function() {
             deferred.resolve(suggestionModel);
+          })
+          .fail(function(err) {
+            alert('You already voted for this suggestion.');
           });
       }
       
