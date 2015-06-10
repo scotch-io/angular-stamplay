@@ -4,9 +4,6 @@ angular
 
 function SuggestionService($q, $stamplay) {
 
-  var suggestionModel = $stamplay.Cobject('suggestion').Model;
-  var suggestionCollection = $stamplay.Cobject('suggestion').Collection;
-
   return {
     create: create,
     getAll: getAll,
@@ -16,8 +13,11 @@ function SuggestionService($q, $stamplay) {
   function create(id, data) {
     var deferred = $q.defer();
 
+    // instantiate the suggestion from the sdk
+    var suggestionModel = $stamplay.Cobject('suggestion').Model;
+
     // set the proper variables
-    data.userId = id;
+    suggestionModel.set('owner', id);
     suggestionModel.set('text', data.text);
 
     // save the suggestion
@@ -34,6 +34,8 @@ function SuggestionService($q, $stamplay) {
     var deferred = $q.defer();
 
     // use collection instead of model to grab all
+    var suggestionCollection = $stamplay.Cobject('suggestion').Collection;
+    
     suggestionCollection.fetch()
       .then(function() {
         deferred.resolve(suggestionCollection);
@@ -46,6 +48,8 @@ function SuggestionService($q, $stamplay) {
   function vote(id, type) {
     var deferred = $q.defer();
 
+    var suggestionModel = $stamplay.Cobject('suggestion').Model;
+
     // find the specific suggestion you want to vote on
     suggestionModel.fetch(id).then(function() {
       
@@ -54,11 +58,17 @@ function SuggestionService($q, $stamplay) {
         suggestionModel.upVote()
           .then(function() {
             deferred.resolve(suggestionModel);
+          })
+          .catch(function() {
+            deferred.reject(suggestionModel);
           });
       } else if (type == 'downvote') {
         suggestionModel.downVote()
           .then(function() {
             deferred.resolve(suggestionModel);
+          })
+          .catch(function() {
+            deferred.reject(suggestionModel);
           });
       }
       

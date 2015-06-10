@@ -44,14 +44,19 @@ function MainController(Suggestion, User) {
   // submit a suggestion ====================
   // ========================================
   main.submitSuggestion = function(id, formData) {
+    console.log(id);
+    console.log(formData);
+
     Suggestion.create(id, formData)
       .then(function(data) {
 
         // clear the form
         main.suggestionData = {};
 
-        // add the new suggestion to the list
-        main.suggestionList.push(data);
+        Suggestion.getAll()
+          .then(function(data) {
+            main.suggestionList = data.instance;
+          });
       });    
   };
 
@@ -75,7 +80,13 @@ function MainController(Suggestion, User) {
         // update the suggestions
         Suggestion.getAll()
           .then(function(data) {
+
+            console.log(data);
+
             main.suggestionList = data.instance;
+          })
+          .catch(function(data) {
+            
           });
       });
   };

@@ -45,6 +45,7 @@
 				</div>
 
 				<!-- FORM GOES HERE -->
+				{{ main.loggedUser.userId }}
 				<form 
 					class="text-center" 
 					name="suggestionForm" 
@@ -85,7 +86,9 @@
 					<p>{{ suggestion.instance.text }}</p>
 
 					<div class="vote-buttons btn-group-vertical">
+
 						{{ suggestion.instance.actions.votes.total }}
+
 						<a class="btn btn-success" 
 							ng-click="main.vote(suggestion, 'upvote')"
 							ng-disabled="suggestion.instance.actions.votes.upvoted">
