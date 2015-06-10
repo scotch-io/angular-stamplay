@@ -58,17 +58,11 @@ function SuggestionService($q, $stamplay) {
         suggestionModel.upVote()
           .then(function() {
             deferred.resolve(suggestionModel);
-          })
-          .catch(function() {
-            deferred.reject(suggestionModel);
           });
       } else if (type == 'downvote') {
         suggestionModel.downVote()
           .then(function() {
             deferred.resolve(suggestionModel);
-          })
-          .catch(function() {
-            deferred.reject(suggestionModel);
           });
       }
       

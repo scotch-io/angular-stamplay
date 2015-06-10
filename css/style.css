@@ -61,6 +61,7 @@ form img 				{ margin:0 auto; width:200px; }
 }
 
 @media screen and (max-width:768px) {
+	.site-topper 					{ padding:20px; }
 	.suggestion-container { width:auto; }
-	.suggestion-page 			{ margin-left:0; margin-right:0; }
+	.suggestion-page 			{ margin-left:0; margin-right:0; padding:20px; }
 }

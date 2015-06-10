@@ -19,9 +19,6 @@ function UserService($q, $stamplay) {
     userModel.currentUser()
       .then(function() {
         deferred.resolve(userModel);
-      })
-      .catch(function(err) {
-        deferred.reject(err);
       });
 
     return deferred.promise;

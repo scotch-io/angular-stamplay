@@ -44,8 +44,6 @@ function MainController(Suggestion, User) {
   // submit a suggestion ====================
   // ========================================
   main.submitSuggestion = function(id, formData) {
-    console.log(id);
-    console.log(formData);
 
     Suggestion.create(id, formData)
       .then(function(data) {
@@ -53,6 +51,7 @@ function MainController(Suggestion, User) {
         // clear the form
         main.suggestionData = {};
 
+        // get all the suggestions again
         Suggestion.getAll()
           .then(function(data) {
             main.suggestionList = data.instance;
@@ -65,28 +64,24 @@ function MainController(Suggestion, User) {
   // ========================================
   main.vote = function(suggestion, type) {
 
-    if (type == 'upvote') {
-      suggestion.instance.actions.votes.total++;
-      suggestion.instance.actions.votes.upvoted = true;
-      suggestion.instance.actions.votes.downvoted = false;
-    } else if (type == 'downvote') {
-      suggestion.instance.actions.votes.total--;
-      suggestion.instance.actions.votes.downvoted = true;
-      suggestion.instance.actions.votes.upvoted = false;
-    }
-
     Suggestion.vote(suggestion.instance._id, type)
       .then(function() {
         // update the suggestions
         Suggestion.getAll()
           .then(function(data) {
 
-            console.log(data);
+            // if the vote was successful, update the UI
+            if (type == 'upvote') {
+              suggestion.instance.actions.votes.total++;
+              suggestion.instance.actions.votes.upvoted = true;
+              suggestion.instance.actions.votes.downvoted = false;
+            } else if (type == 'downvote') {
+              suggestion.instance.actions.votes.total--;
+              suggestion.instance.actions.votes.downvoted = true;
+              suggestion.instance.actions.votes.upvoted = false;
+            }
 
             main.suggestionList = data.instance;
-          })
-          .catch(function(data) {
-            
           });
       });
   };
